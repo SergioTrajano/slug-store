@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Bangers&family=Inter:wght@200;300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    --roxo: #6F267C;
+    --amarelo: #FCC500;
+    --vermelho: #FA2C59;
+    --preto:  #3A3A3A; 
+    --branco: #FFFFFF;
+    --cinza-claro: #E6E6E6;
+    --cor-cinza-escuro: #808080;
+  }
+  
+  body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background-color: var(--branco);
+    color: var(--preto);
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+
