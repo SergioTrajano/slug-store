@@ -1,9 +1,35 @@
 import styled from 'styled-components';
+import { BsFillPersonFill } from "react-icons/bs";
+import { FaShoppingCart } from "react-icons/fa";
+
+import UserContext from '../../UserContext';
+import { useContext } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Header () {
+    const { nome, carrinho } = useContext(UserContext);
+
+    const nomeUsuarioLogado = nome.split(' ')[0] || '';
+    const iconeCor = nome ? 'var(--roxo)' : 'var(--cor-cinza-escuro)';
+    const quantidadeItensNoCarrinho = carrinho.length;
+
     return (
         <Container>
-            Header
+            <Link to={'/'}>
+                SlugStore
+            </Link>
+            <div>
+                <Link to={'/sign-in'} style={{pointerEvents: nome ? 'none' : 'initial'}}>
+                    <BsFillPersonFill size={'6vh'} color={iconeCor}/>
+                    <span>{nomeUsuarioLogado}</span>
+                </Link>
+                <Link to={'/cart'}>
+                    <FaShoppingCart size={'6vh'} color='var(--roxo)'/>
+                    <div>
+                        {quantidadeItensNoCarrinho}
+                    </div>
+                </Link>
+            </div>
         </Container>
     )
 }
@@ -14,8 +40,63 @@ const Container = styled.div`
     background-color: var(--amarelo);
     display: flex;
     justify-content: space-between;
+    padding: 0 3vw;
     align-items: center;
     position: fixed;
     top: 0;
     left: 0;
+
+    a {
+        text-decoration: none;
+    }
+
+    >a {
+        font-family: 'Bangers', cursive;
+        font-size: 5.99vh;
+        line-height: 6.1vh;
+        color: var(--vermelho);
+    }
+
+    div {
+        display: flex;
+        align-items: center;
+        
+        a {
+            font-size: 2.24vh;
+            line-height: 2.3vh;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        a:first-child {
+            max-width: 14vw;
+            flex-direction: column;
+
+            span {
+                max-width: inherit;
+                text-overflow: ellipsis;
+                text-align: center;
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+            
+        }
+
+        a:last-child {
+            margin-left: 3vw;
+
+            div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 3vh;
+                height: 3vh;
+                border-radius: 50%;
+                background-color: var(--branco);
+                margin-left: 1vw;
+                color: var(--preto);
+            }
+        }
+    }
 `
