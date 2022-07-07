@@ -7,7 +7,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Header () {
-    const { nome, carrinho } = useContext(UserContext);
+    const { nome, carrinho, desabilitarClick } = useContext(UserContext);
 
     const nomeUsuarioLogado = nome.split(' ')[0] || '';
     const iconeCor = nome ? 'var(--roxo)' : 'var(--cor-cinza-escuro)';
@@ -19,11 +19,11 @@ export default function Header () {
                 SlugStore
             </Link>
             <div>
-                <Link to={'/sign-in'} style={{pointerEvents: nome ? 'none' : 'initial'}}>
+                <Link to={'/sign-in'} style={{pointerEvents: (nome || desabilitarClick)  ? 'none' : 'initial'}}>
                     <BsFillPersonFill size={'6vh'} color={iconeCor}/>
                     <span>{nomeUsuarioLogado}</span>
                 </Link>
-                <Link to={'/cart'}>
+                <Link to={'/cart'} style={{pointerEvents: desabilitarClick ? 'none' : 'initial'}}>
                     <FaShoppingCart size={'6vh'} color='var(--roxo)'/>
                     <div>
                         {quantidadeItensNoCarrinho}
