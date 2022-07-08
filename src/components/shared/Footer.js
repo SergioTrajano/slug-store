@@ -14,7 +14,7 @@ const Container = styled.div`
     width: 100vw;
     height: 10vh;
     background-color: var(--cor-cinza-escuro);
-    color: var(--branco);
+    color: var(--branco)
     display: flex;
     justify-content: center;
     align-items: center;
