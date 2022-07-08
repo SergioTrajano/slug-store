@@ -159,6 +159,9 @@ const Container = styled.div`
             line-height: 3.52vh;
             font-weight: bold;
             border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             &:disabled {
                 opacity: 0.8;

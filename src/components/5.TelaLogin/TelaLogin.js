@@ -23,7 +23,7 @@ export default function TelaLogin () {
         const promise = axios.get('http://localhost:5001/auth', dadosLogin);
         promise.then((response) => {
             setToken(response.data.token);
-            setNome(response.data.name);
+            setNome(response.data.nome);
             setDesabilitarClick(false);
             navigate(`/${rotaAnterior}`);
         });
@@ -134,6 +134,9 @@ const Container = styled.div`
             font-weight: bold;
             border-radius: 5px;
             margin-top: 3vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             &:disabled {
                 opacity: 0.8;

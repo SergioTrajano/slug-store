@@ -7,11 +7,20 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 export default function Header () {
-    const { nome, carrinho, desabilitarClick } = useContext(UserContext);
+    const { nome, carrinho, desabilitarClick, setRotaAnterior } = useContext(UserContext);
 
     const nomeUsuarioLogado = nome.split(' ')[0] || '';
     const iconeCor = nome ? 'var(--roxo)' : 'var(--cor-cinza-escuro)';
     const quantidadeItensNoCarrinho = carrinho.length;
+
+    function salvarRota() {
+        if (!nome) {
+            const urlAtual = window.location.href.split('/');
+            const rotaAtual = urlAtual[urlAtual.length - 1];
+
+            if (rotaAtual !== "sign-up") setRotaAnterior(rotaAtual);
+        }
+    }
 
     return (
         <Container>
@@ -19,7 +28,7 @@ export default function Header () {
                 SlugStore
             </Link>
             <div>
-                <Link to={'/sign-in'} style={{pointerEvents: (nome || desabilitarClick)  ? 'none' : 'initial'}}>
+                <Link to={'/sign-in'} onClick={salvarRota} style={{pointerEvents: (nome || desabilitarClick)  ? 'none' : 'initial'}}>
                     <BsFillPersonFill size={'6vh'} color={iconeCor}/>
                     <span>{nomeUsuarioLogado}</span>
                 </Link>
