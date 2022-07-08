@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 
 export default function TelaProdutos () {
-    const type = useParams();
+    const {type} = useParams();
     const [produtos, setProdutos] = useState([]);
 
     useEffect(() => {
@@ -33,6 +33,7 @@ export default function TelaProdutos () {
         </Menu>
         <Display>
         {produtos.length ? produtos.map( produto => { return <Produto key={produto._id}
+                                                                id={produto._id}
                                                                 product={produto.product} 
                                                                 type={produto.type}
                                                                 image={produto.image}
