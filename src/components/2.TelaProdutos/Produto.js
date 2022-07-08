@@ -5,7 +5,7 @@ export default function Produto ({ id, product, type, image, price, quantity, de
 
     return(
         <div>
-            <Link to="produto-selecionado" params={{ type: {type}, id: {id} }}>
+            <Link to={`${type}/${id}`}>
             <img src={image}/>
             </Link>
             <h2>{product}</h2>

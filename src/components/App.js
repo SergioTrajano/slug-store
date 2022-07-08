@@ -17,7 +17,7 @@ export default function App() {
 
     const [token, setToken] = useState("");
     const [nome, setNome] = useState("");
-    const [carrinho, setCarrinho] = useState("");
+    const [carrinho, setCarrinho] = useState([]);
     const [modalAberto, setModalAberto] = useState(false);
     const [rotaAnterior, setRotaAnterior] = useState('');
     const [desabilitarClick, setDesabilitarClick] = useState(false);
