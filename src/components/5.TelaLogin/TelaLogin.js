@@ -20,10 +20,11 @@ export default function TelaLogin () {
                 senha,
             }
         }
-        const promise = axios.get('http://localhost:5001', dadosLogin);
+        const promise = axios.get('http://localhost:5001/auth', dadosLogin);
         promise.then((response) => {
             setToken(response.data.token);
-            setNome(response.data.name);
+            setNome(response.data.nome);
+            setDesabilitarClick(false);
             navigate(`/${rotaAnterior}`);
         });
         promise.catch(() => {
@@ -34,7 +35,7 @@ export default function TelaLogin () {
         });
     }
 
-    const butaoConteudo = !desabilitarClick ? 'Fazer Login' : <ThreeDots color='white' />;
+    const butaoConteudo = !desabilitarClick ? 'FAZER LOGIN' : <ThreeDots color='white' />;
 
     return (
         <Container>
@@ -62,7 +63,7 @@ export default function TelaLogin () {
                     {butaoConteudo}
                 </button>
             </form>
-            <Link to={'/sign-up'}>
+            <Link to={'/sign-up'} style={{pointerEvents: desabilitarClick ? 'none' : 'initial'}}>
                 Não tem cadastro ainda? Cadastre-se agora!
             </Link>
         </Container>
@@ -113,7 +114,7 @@ const Container = styled.div`
             border: 1px solid var(--cinza-claro);
 
             &::placeholder {
-                color: var(--cinza-claro);
+                color: var(--cor-cinza-escuro);
             }
 
             &:disabled {
@@ -133,6 +134,9 @@ const Container = styled.div`
             font-weight: bold;
             border-radius: 5px;
             margin-top: 3vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             &:disabled {
                 opacity: 0.8;
