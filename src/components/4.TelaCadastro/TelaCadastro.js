@@ -31,13 +31,13 @@ export default function TelaCadastro () {
             email,
             senha,
         };
-        const promise = axios.post('http://localhost:5001/auth', dadosParaCadastrar);
+        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/auth`, dadosParaCadastrar);
         promise.then(() => {
             alert('Cadastro realizado! Você já podefazer login.');
             setDesabilitarClick(false);
             navigate('/sign-in');
         });
-        promise.catch((error) => {
+        promise.catch(() => {
             alert('Dados invalidos!');
             setDesabilitarClick(false);
         });

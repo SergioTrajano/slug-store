@@ -20,7 +20,7 @@ export default function TelaLogin () {
                 senha,
             }
         }
-        const promise = axios.get('http://localhost:5001/auth', dadosLogin);
+        const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/auth`, dadosLogin);
         promise.then((response) => {
             setToken(response.data.token);
             setNome(response.data.nome);
