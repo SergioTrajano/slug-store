@@ -11,7 +11,7 @@ export default function Header () {
 const Container = styled.div`
     width: 100vw;
     height: 10vh;
-    background-color: var(--cor-cinza-escuro);
+    background-color: var(--amarelo);
     display: flex;
     justify-content: space-between;
     align-items: center;
