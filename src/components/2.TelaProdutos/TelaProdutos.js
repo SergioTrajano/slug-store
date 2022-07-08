@@ -11,9 +11,15 @@ export default function TelaProdutos () {
 
     useEffect(() => {
     
-        const URL = `http://localhost:5000/${ type }`;
+        const URL = `http://localhost:5000/products`;
+
+        const config = {
+            headers: {
+                Type: {type}
+            }
+        }
         
-        const promise = axios.get(URL);
+        const promise = axios.get(URL, config);
         promise.then((response) => {
             const dados = response.data;
             console.log(response);

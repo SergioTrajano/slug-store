@@ -39,7 +39,7 @@ export default function App() {
             <Routes>
                 <Route path="/" element={<TelaHome />} />
                 <Route path="/:type" element={<TelaProdutos />} />
-                <Route name="produto-selecionado" path="/:type/:id" element={<TelaProduto />} />
+                <Route path="/:id" element={<TelaProduto />} />
                 <Route path="/sign-up" element={<TelaCadastro />} />
                 <Route path="/sign-in" element={<TelaLogin />} />
                 <Route path="/cart" element={<TelaCarrinho />} />
