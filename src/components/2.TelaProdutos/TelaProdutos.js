@@ -103,6 +103,7 @@ const Display = styled.div`
 
     img {
         margin-bottom: 5px;
+        object-fit: cover;
     }
 
     h2 {

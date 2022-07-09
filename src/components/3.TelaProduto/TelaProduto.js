@@ -27,31 +27,50 @@ export default function TelaProduto () {
             }
         })
 
-    }, [type]);
+    }, []);
 
     return (
         <Container>
-        <div>
-            <img src={produto.image} alt="IMG" width="130px" height="170px"/>
-            <h2>{produto.product}</h2>
-            <h3>{produto.price}</h3>
-        </div>
-        <Botao>ADICIONAR AO CARRINHO</Botao>
-        <div>{produto.quantity}</div>
-        <div>{produto.description}</div>
+            <div>
+                <img src={produto.image} alt="IMG" width="130px" height="170px"/>
+                <h2>{produto.product}</h2>
+                <h3>R$ {parseFloat(produto.price).toFixed(2)}</h3>
+            </div>
+            <Botao>ADICIONAR AO CARRINHO</Botao>
+            <Estoque>Apenas {produto.quantity} unidades disponíveis!</Estoque>
+            <Descricao>{produto.description}</Descricao>
         </Container>
     )
 };
 
 const Container = styled.div`
     width: 100vw;
-    height: 100vh;
-    padding-top: 10px;
+    height: auto;
+    padding-top: 100px;
+    padding-bottom: 100px;
     background-color: var(--branco);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: scroll;
+    img {
+        object-fit: cover;
+    }
+
+    h2 {
+        font-size: 20px;
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    h3 {
+        font-size: 18px;
+        font-weight: 600;
+        text-align: center;
+        padding-top: 10px;
+        margin-bottom: 20px;
+    }
 `
 
 const Botao = styled.div`
@@ -63,4 +82,18 @@ const Botao = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+`
+const Estoque = styled.div`
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+`
+const Descricao = styled.div`
+    font-size: 18px;
+    text-align: left;
+    padding-left: 30px;
+    padding-right:30px;
+    line-height: 25px;
 `
