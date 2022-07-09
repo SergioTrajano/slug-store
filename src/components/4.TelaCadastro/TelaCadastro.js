@@ -14,9 +14,19 @@ export default function TelaCadastro () {
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const navigate = useNavigate();
 
+    const senhaForte = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,16}$/;
+
     function submeter(e) {
         e.preventDefault();
         setDesabilitarClick(true);
+
+        if (!senhaForte.test(senha)) {
+            alert("A senha deve conter pelo uma letra minuscula, uma letra maiuscula, um número e um caracter especial (@$*&#)");
+            setSenha("");
+            setConfirmarSenha("");
+            setDesabilitarClick(false);
+            return;
+        }
 
         if (senha !== confirmarSenha) {
             alert('As senhas devem coincidir!');
@@ -51,7 +61,7 @@ export default function TelaCadastro () {
                 Insira seus dados
             </p>
             <form onSubmit={submeter}>
-            <input 
+                <input 
                     placeholder='Nome'
                     type={'text'}
                     value={nome}
