@@ -29,11 +29,11 @@ export default function Header () {
             </Link>
             <div>
                 <Link to={'/sign-in'} onClick={salvarRota} style={{pointerEvents: (nome || desabilitarClick)  ? 'none' : 'initial'}}>
-                    <BsFillPersonFill size={'6vh'} color={iconeCor}/>
+                    <BsFillPersonFill style={{height: '6vh', width: '6vh'}} color={iconeCor}/>
                     <span>{nomeUsuarioLogado}</span>
                 </Link>
                 <Link to={'/cart'} style={{pointerEvents: desabilitarClick ? 'none' : 'initial'}}>
-                    <FaShoppingCart size={'6vh'} color='var(--roxo)'/>
+                    <FaShoppingCart style={{height: '6vh', width: '6vh'}} color='var(--roxo)'/>
                     <div>
                         {quantidadeItensNoCarrinho}
                     </div>
