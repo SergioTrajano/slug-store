@@ -35,9 +35,9 @@ export default function TelaProdutos () {
     return (
         <Container>
         <Menu>
-            <Link style={{textDecoration: 'none'}} to="/lesma"><div>Lesmas</div></Link>
-            <Link style={{textDecoration: 'none'}} to="/atirador"><div>Atiradores</div></Link>
-            <Link style={{textDecoration: 'none'}} to="/carro"><div>Carros</div></Link>
+            <Link style={{textDecoration: 'none'}} name="type" to="/lesma"><div>Lesmas</div></Link>
+            <Link style={{textDecoration: 'none'}} name="type" to="/atirador"><div>Atiradores</div></Link>
+            <Link style={{textDecoration: 'none'}} name="type" to="/carro"><div>Carros</div></Link>
         </Menu>
         <Display>
         {produtos.length ? produtos.map( produto => { return <Produto key={produto._id}
