@@ -2,11 +2,11 @@ import React from 'react';
 import { Link } from "react-router-dom";
 
 
-export default function Produto ({ id, product, type, image, price, quantity, description, createdAt }) {
+export default function Produto ({ id, product, type, image, price }) {
 
     return(
         <div>
-            <Link to={`/${id}`}>
+            <Link to={`/${type}/${id}`}>
             <img src={image} width="130px" height="170px" alt=""/>
             </Link>
             <h2>{product}</h2>

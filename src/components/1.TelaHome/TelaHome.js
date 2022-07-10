@@ -60,6 +60,4 @@ const Container = styled.div`
     img {
         object-fit: cover;
     }
-
-    
 `
