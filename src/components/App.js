@@ -135,8 +135,8 @@ preco: 50.00,
                 {modalAberto ? <Modal/> : null} 
             <Routes>
                 <Route path="/" element={<TelaHome />} />
-                <Route path="/:type" element={<TelaProdutos />} />
-                <Route path="/:id" element={<TelaProduto />} />
+                <Route name="type" path="/:type" element={<TelaProdutos />} />
+                <Route name="id" path="/:type/:id" element={<TelaProduto />} />
                 <Route path="/sign-up" element={<TelaCadastro />} />
                 <Route path="/sign-in" element={<TelaLogin />} />
                 <Route path="/cart" element={<TelaCarrinho />} />
