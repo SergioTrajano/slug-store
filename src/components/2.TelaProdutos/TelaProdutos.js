@@ -13,7 +13,7 @@ export default function TelaProdutos () {
     useEffect(() => {
         setProdutos([]);
 
-        const URL = `http://localhost:5001/products`;
+        const URL = `http://localhost:5002/products`;
 
         const config = {
             headers: {

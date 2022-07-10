@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { ThreeDots } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import UserContext from "../../UserContext.js";
@@ -7,9 +8,10 @@ import Item from "./Item.js";
 import Modal from "./Modal.js";
 
 export default function TelaCarrinho () {
-    const { token, carrinho, setCarrinho, desabilitarClick, setDesabilitarClick} = useContext(UserContext);
+    const { token, carrinho, desabilitarClick} = useContext(UserContext);
     let total = 0;
     const [modalDisplay, setModalDisplay] = useState("none");
+    const navigate = useNavigate();
 
     function itensDoCarrinho() {
         if (carrinho.length) {
@@ -23,7 +25,12 @@ export default function TelaCarrinho () {
     }
 
     function comprar() {
-        setModalDisplay("flex");
+        if (token) {
+            setModalDisplay("flex");
+        } else {
+            alert("Faça login para continuar.");
+            navigate("/sign-in");
+        }
     }
 
     const listaDeCompras = itensDoCarrinho();
@@ -40,7 +47,7 @@ export default function TelaCarrinho () {
                 
                 <button disabled={desabilitarClick} onClick={comprar} >{conteudoButao}</button>
             </Container>
-            <Modal display={modalDisplay} />
+            <Modal display={modalDisplay} setDisplay={setModalDisplay}/>
         </>
     )
 };
@@ -124,7 +131,7 @@ const Container = styled.div`
         }
     }
 
-    button {
+    >button {
             width: 86.93vw;
             height: 6.89vh;
             text-align: center;

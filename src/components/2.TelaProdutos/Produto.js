@@ -10,7 +10,7 @@ export default function Produto ({ id, product, type, image, price, quantity, de
             <img src={image} width="130px" height="170px"/>
             </Link>
             <h2>{product}</h2>
-            <h3>R${parseFloat(price).toFixed(2) }</h3>
+            <h3>R${parseFloat(price).toFixed(2).replace('.', ',') }</h3>
         </div>
     );
 }
