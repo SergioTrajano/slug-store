@@ -16,9 +16,13 @@ export default function Header () {
     function salvarRota() {
         if (!nome) {
             const urlAtual = window.location.href.split('/');
-            const rotaAtual = urlAtual[urlAtual.length - 1];
+            let rotaAtual = "";
+            urlAtual.forEach((elem,i) => {
+                if (i > 2) rotaAtual += elem;
+                if (i < urlAtual.length-1) rotaAtual += "/";
+            });
 
-            if (rotaAtual !== "sign-up") setRotaAnterior(rotaAtual);
+            if (rotaAtual !== "sign-up" && rotaAtual !== "sign-in") setRotaAnterior(rotaAtual);
         }
     }
 
@@ -29,11 +33,11 @@ export default function Header () {
             </Link>
             <div>
                 <Link to={'/sign-in'} onClick={salvarRota} style={{pointerEvents: (nome || desabilitarClick)  ? 'none' : 'initial'}}>
-                    <BsFillPersonFill style={{height: '6vh', width: '6vh'}} color={iconeCor}/>
+                    <BsFillPersonFill style={{width: '6vh', height: '6vh'}} color={iconeCor}/>
                     <span>{nomeUsuarioLogado}</span>
                 </Link>
                 <Link to={'/cart'} style={{pointerEvents: desabilitarClick ? 'none' : 'initial'}}>
-                    <FaShoppingCart style={{height: '6vh', width: '6vh'}} color='var(--roxo)'/>
+                    <FaShoppingCart style={{width: '6vh', height: '6vh'}} color='var(--roxo)'/>
                     <div>
                         {quantidadeItensNoCarrinho}
                     </div>
@@ -54,6 +58,7 @@ const Container = styled.div`
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
 
     a {
         text-decoration: none;
