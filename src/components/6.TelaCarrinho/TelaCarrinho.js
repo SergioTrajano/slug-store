@@ -8,7 +8,7 @@ import Item from "./Item.js";
 import Modal from "./Modal.js";
 
 export default function TelaCarrinho () {
-    const { token, carrinho, desabilitarClick} = useContext(UserContext);
+    const { token, carrinho, desabilitarClick, setRotaAnterior} = useContext(UserContext);
     let total = 0;
     const [modalDisplay, setModalDisplay] = useState("none");
     const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function TelaCarrinho () {
     function itensDoCarrinho() {
         if (carrinho.length) {
             carrinho.forEach(element => {
-                total += Number(element.preco * element.quantidade);
+                total += Number(element.price * element.quantity);
             });
             return <><ul>{carrinho.map((item,i) => <Item key={i} item={item} />)}</ul>
             <span>Total: R$ {Number(total).toFixed(2).replace('.', ',')}</span></>;
@@ -29,6 +29,7 @@ export default function TelaCarrinho () {
             setModalDisplay("flex");
         } else {
             alert("Faça login para continuar.");
+            setRotaAnterior("cart");
             navigate("/sign-in");
         }
     }
@@ -94,7 +95,7 @@ const Container = styled.div`
     }
 
     ul {
-        min-height: 45vh;
+        min-height: 60vh;
 
         li {
             width: 90vw;

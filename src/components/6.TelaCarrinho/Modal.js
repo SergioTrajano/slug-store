@@ -48,6 +48,14 @@ export default function Modal ({ display, setDisplay, total }) {
         setDesabilitarClick(false);
     }
 
+    function resetarDadosCartao() {
+        setCartaoTipo("");
+        setCartaoNumero("");
+        setCartaoCodigo("");
+        setCartaoValidade("");
+        setDisplay("none");
+    }
+
     const butaoCOnteudo = !desabilitarClick ? "REALIZAR PAGAMENTO" : <ThreeDots color="white" />;
 
     return (
@@ -91,10 +99,11 @@ export default function Modal ({ display, setDisplay, total }) {
                     />
                     <button type="submit" disabled={desabilitarClick || !cartaoTipo} >{butaoCOnteudo}</button>
                 </form>
+                <button onClick={resetarDadosCartao}>VOLTAR</button>
             </Modelo>
         </Container>
-    )
-};
+    );
+}
 
 const Container = styled.div`
     width: 100vw;
@@ -195,5 +204,21 @@ const Modelo = styled.div`
                 opacity: 0.8;
             }
         }
+    }
+
+    >button {
+        width: 43.46vw;
+        height: 3.44vh;
+        text-align: center;
+        border: none;
+        background-color: var(--cinza-claro);
+        color: var(--roxo);
+        font-size: 1.5vh;
+        line-height: 1.75vh;
+        font-weight: bold;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 `

@@ -17,6 +17,15 @@ export default function TelaCadastro () {
     function submeter(e) {
         e.preventDefault();
         setDesabilitarClick(true);
+        const senhaForte = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[$*&@#])[0-9a-zA-Z$*&@#]{8,16}$/;
+
+        if (!senhaForte.test(senha)) {
+            alert("A senha deve conter letra maiscula, letra minuscula, número e um caracterer especial ($*&@#)");
+            setSenha("");
+            setConfirmarSenha("");
+            setDesabilitarClick(false);
+            return;
+        }
 
         if (senha !== confirmarSenha) {
             alert('As senhas devem coincidir!');

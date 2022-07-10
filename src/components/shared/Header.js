@@ -18,10 +18,12 @@ export default function Header () {
             const urlAtual = window.location.href.split('/');
             let rotaAtual = "";
             urlAtual.forEach((elem,i) => {
-                if (i > 2) rotaAtual += elem;
-                if (i < urlAtual.length-1) rotaAtual += "/";
+                if (i > 2) {
+                    rotaAtual += elem;
+                    if (i < urlAtual.length-1) rotaAtual += "/";
+                }
             });
-
+            console.log(rotaAtual);
             if (rotaAtual !== "sign-up" && rotaAtual !== "sign-in") setRotaAnterior(rotaAtual);
         }
     }
