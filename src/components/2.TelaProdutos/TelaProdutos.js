@@ -9,11 +9,12 @@ import Produto from './Produto';
 export default function TelaProdutos () {
     const {type} = useParams();
     const [produtos, setProdutos] = useState([]);
+    require('dotenv').config({ path: '../../.env' })
 
     useEffect(() => {
         setProdutos([]);
 
-        const URL = `http://localhost:5002/products`;
+        const URL = `${process.env.REACT_APP_API_BASE_URL}/products`;
 
         const config = {
             headers: {
