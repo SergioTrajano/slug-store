@@ -6,7 +6,7 @@ import UserContext from "../../UserContext";
 
 dotenv.config();
 
-export default function Item({ item }) {
+export default function Item({ item, index }) {
     const { token, desabilitarClick, setDesabilitarClick, carrinho, setCarrinho } = useContext(UserContext);
 
     function excluir() {
@@ -17,9 +17,8 @@ export default function Item({ item }) {
                     Authorization: `Bearer ${token}`
                 }
             };
-            const itemString = JSON.stringify(item);
             
-            const promise = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/cart/${itemString}`, config);
+            const promise = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/cart/${index}`, config);
             promise.catch(() => {
                 alert("Erro no servidor. Tente em outra hora!");
             });

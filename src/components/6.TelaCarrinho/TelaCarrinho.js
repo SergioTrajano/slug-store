@@ -18,7 +18,7 @@ export default function TelaCarrinho () {
             carrinho.forEach(element => {
                 total += Number(element.price);
             });
-            return <><ul>{carrinho.map((item,i) => <Item key={i} item={item} />)}</ul>
+            return <><ul>{carrinho.map((item,i) => <Item key={i} item={item} index={i}/>)}</ul>
             <span>Total: R$ {Number(total).toFixed(2).replace('.', ',')}</span></>;
         }
         return <div>Seu carrinho está vazio</div>;
