@@ -19,6 +19,9 @@ export default function Item({ item, index }) {
             };
             
             const promise = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/cart/${index}`, config);
+            promise.then(res => {
+                setCarrinho(res.data);
+            });
             promise.catch(() => {
                 alert("Erro no servidor. Tente em outra hora!");
             });
