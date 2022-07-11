@@ -9,6 +9,7 @@ export default function TelaProduto () {
 
     const { id } = useParams();
     const [produto, setProduto] = useState({});
+    const [estoque, setEstoque] = useState("");
 
     const { token, carrinho, setCarrinho } = useContext(UserContext);
     const navigate = useNavigate();
@@ -30,21 +31,22 @@ export default function TelaProduto () {
             const dados = response.data;
             if(dados) {
                 setProduto({...dados});
+                setEstoque(dados.quantity);
             }
         })
 
     }, []);
 
     function adicionarAoCarrinho() {
-    if(produto.quantity <=0) {
+    if(estoque <=0) {
         alert("produto fora de estoque");
         return;
     }
 
         if(!token) { 
             setCarrinho([...carrinho, produto]);
+            setEstoque(estoque -1);
             alert("Produto adicionado ao carrinho!");
-            navigate(-1);
         } else { 
 
         const produtoAdicionado = {
@@ -68,6 +70,7 @@ export default function TelaProduto () {
         const promise = axios.put(`${process.env.REACT_APP_API_BASE_URL}/cart/add`, produtoAdicionado, config);
         promise.then(res => {
             setCarrinho(res.data);
+            setEstoque(estoque -1);
             alert("Produto adicionado ao carrinho!");
         });
             promise.catch(() => {
@@ -84,10 +87,10 @@ export default function TelaProduto () {
                 <h3>R$ {parseFloat(produto.price).toFixed(2)}</h3>
             </div>
             <Botao onClick={ adicionarAoCarrinho }>
-            {produto.quantity >0 ? "ADICIONAR AO CARRINHO" : "PRODUTO INDISPONÍVEL"}
+            {estoque >0 ? "ADICIONAR AO CARRINHO" : "PRODUTO INDISPONÍVEL"}
             </Botao>
-            <Estoque>{ produto.quantity > 0 ? 
-            `Apenas ${produto.quantity} unidades disponíveis!` : 
+            <Estoque>{ estoque > 0 ? 
+            `Apenas ${estoque} unidades disponíveis!` : 
             `Produto em falta no estoque :/`}</Estoque>
             <Descricao>{produto.description}</Descricao>
         </Container>
