@@ -36,6 +36,11 @@ export default function TelaProduto () {
     }, []);
 
     function adicionarAoCarrinho() {
+    if(produto.quantity <=0) {
+        alert("produto fora de estoque");
+        return;
+    }
+
         if(!token) { 
             setCarrinho([...carrinho, produto]);
             alert("Produto adicionado ao carrinho!");
@@ -78,7 +83,9 @@ export default function TelaProduto () {
                 <h2>{produto.product}</h2>
                 <h3>R$ {parseFloat(produto.price).toFixed(2)}</h3>
             </div>
-            <Botao onClick={adicionarAoCarrinho}>ADICIONAR AO CARRINHO</Botao>
+            <Botao onClick={ adicionarAoCarrinho }>
+            {produto.quantity >0 ? "ADICIONAR AO CARRINHO" : "PRODUTO INDISPONÍVEL"}
+            </Botao>
             <Estoque>{ produto.quantity > 0 ? 
             `Apenas ${produto.quantity} unidades disponíveis!` : 
             `Produto em falta no estoque :/`}</Estoque>
