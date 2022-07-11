@@ -45,7 +45,7 @@ export default function Modal ({ display, setDisplay, total }) {
                     alert("Ocorreu algum erro. Tente novamente mais tarde!");
                 });
             });
-            promiseProduto.then(() => {
+            promiseProduto.catch(() => {
                 alert("Ocorreu algum erro. Tente novamente mais tarde!");
             });
         });

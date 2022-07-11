@@ -4,7 +4,6 @@ import { useState } from "react";
 import UserContext from "../UserContext";
 import Header from "./shared/Header.js";
 import Footer from "./shared/Footer.js";
-import Modal from "./6.TelaCarrinho/Modal.js";
 import TelaHome from "./1.TelaHome/TelaHome.js";
 import TelaProdutos from "./2.TelaProdutos/TelaProdutos.js";
 import TelaProduto from "./3.TelaProduto/TelaProduto.js";
