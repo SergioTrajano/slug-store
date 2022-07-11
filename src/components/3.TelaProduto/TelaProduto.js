@@ -49,7 +49,8 @@ export default function TelaProduto () {
             price: produto.price,
             description: produto.description,
             quantity: produto.quantity,
-            createdAt: produto.createdAt
+            createdAt: produto.createdAt,
+            produtoId: produto._id,
         }
 
         const config = {
@@ -59,7 +60,7 @@ export default function TelaProduto () {
         };
        
 
-        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/cart/add`, produtoAdicionado, config);
+        const promise = axios.put(`${process.env.REACT_APP_API_BASE_URL}/cart/add`, produtoAdicionado, config);
         promise.then(res => {
             setCarrinho(res.data);
             alert("Produto adicionado ao carrinho!");

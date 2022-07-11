@@ -46,7 +46,7 @@ export default function TelaCarrinho () {
 
                 {listaDeCompras}
                 
-                <button disabled={desabilitarClick} onClick={comprar} >{conteudoButao}</button>
+                <button disabled={desabilitarClick || !carrinho.length} onClick={comprar} >{conteudoButao}</button>
             </Container>
             <Modal display={modalDisplay} setDisplay={setModalDisplay} total={total}/>
         </>
@@ -108,8 +108,8 @@ const Container = styled.div`
             margin-bottom: 2vh;
 
             img {
-                width: 10vw;
-                height: 10vw;
+                width: 7vw;
+                height: 7vw;
             }
 
             p {
