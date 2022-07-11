@@ -10,12 +10,12 @@ export default function TelaProduto () {
     const {type, id} = useParams();
     const [produto, setProduto] = useState({});
 
-    const { token, carrinho, setCarrinho, setModalAberto } = useContext(UserContext);
+    const { token, carrinho, setCarrinho } = useContext(UserContext);
     const navigate = useNavigate();
 
     useEffect(() => {
 
-        const URL = `http://localhost:5001/products/id`;
+        const URL = `http://localhost:5002/products/id`;
 
         const config = {
             headers: {
@@ -26,7 +26,6 @@ export default function TelaProduto () {
         const promise = axios.get(URL, config);
         promise.then((response) => {
             const dados = response.data;
-            console.log(response);
             if(dados) {
                 setProduto({...dados});
             }
@@ -37,7 +36,6 @@ export default function TelaProduto () {
     function adicionarAoCarrinho() {
         if(!token) { // se usuario não está logado, atualiza o carrinho no front e navega para /cart
             setCarrinho([...carrinho, produto]);
-            console.log(carrinho);
             alert("Produto adicionado ao carrinho!");
             navigate(-1);
         } else { // se esta logado, faz um post para a colecao carrinho e navega para /cart
@@ -56,15 +54,14 @@ export default function TelaProduto () {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }
+        };
        
-        const promise = axios.post('http://localhost/cart', produtoAdicionado, config);
-        promise.then(res => {
-            console.log(res);
+        const promise = axios.put('http://localhost:5002/cart/add', produtoAdicionado, config);
+        promise.then((response) => {
+            setCarrinho(response.data)
             alert("Produto adicionado ao carrinho!");
             navigate(-1)});
-            promise.catch(err => {
-               console.log(err);
+            promise.catch(() => {
                alert("Problemas para adicionar produto ao carrinho.")});
         }
     }

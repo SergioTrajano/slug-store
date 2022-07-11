@@ -30,15 +30,22 @@ export default function Modal ({ display, setDisplay, total }) {
                 Authorization: `Bearer ${token}`
             }
         };
+
         const promisePedido = axios.post(`${process.env.REACT_APP_API_BASE_URL}/order`, pedido, config);
         promisePedido.then(() => {
-            const promiseCarrinho = axios.put(`${process.env.REACT_APP_API_BASE_URL}/cart`, config);
-            promiseCarrinho.then(() => {
-                alert("Compra realizada!");
-                setCarrinho([]);
-                setDisplay("none");
+            const promiseProduto = axios.put(`${process.env.REACT_APP_API_BASE_URL}/products`, [], config);
+            promiseProduto.then(() => {
+                const promiseCarrinho = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/cart`, config);
+                promiseCarrinho.then(() => {
+                    alert("Compra realizada!");
+                    setCarrinho([]);
+                    setDisplay("none");
+                });
+                promiseCarrinho.catch(() => {
+                    alert("Ocorreu algum erro. Tente novamente mais tarde!");
+                });
             });
-            promiseCarrinho.catch(() => {
+            promiseProduto.then(() => {
                 alert("Ocorreu algum erro. Tente novamente mais tarde!");
             });
         });

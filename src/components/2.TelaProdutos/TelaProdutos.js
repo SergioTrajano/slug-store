@@ -24,7 +24,6 @@ export default function TelaProdutos () {
         const promise = axios.get(URL, config);
         promise.then((response) => {
             const dados = response.data;
-            console.log(response);
             if(dados.length !==0) {
                 setProdutos([...dados]);
             }

@@ -17,7 +17,9 @@ export default function Item({ item }) {
                     Authorization: `Bearer ${token}`
                 }
             };
-            const promise = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/cart/${item}`, config);
+            const itemString = JSON.stringify(item);
+            
+            const promise = axios.delete(`${process.env.REACT_APP_API_BASE_URL}/cart/${itemString}`, config);
             promise.catch(() => {
                 alert("Erro no servidor. Tente em outra hora!");
             });
@@ -34,9 +36,8 @@ export default function Item({ item }) {
                 <img src={item.image} alt="" />
                 <p>{item.product}</p>
             </div>
-            <p>{item.quantity}</p>
             <div>
-                <p>R$ {Number(item.price * item.quantity).toFixed(2).replace('.', ',')}</p>
+                <p>R$ {Number(item.price).toFixed(2).replace('.', ',')}</p>
                 <FaTimesCircle 
                     color="var(--vermelho)" 
                     style={{width: "2vh", height: "2vh", pointerEvents: desabilitarClick ? 'none' : 'initial'}}

@@ -16,7 +16,7 @@ export default function TelaCarrinho () {
     function itensDoCarrinho() {
         if (carrinho.length) {
             carrinho.forEach(element => {
-                total += Number(element.price * element.quantity);
+                total += Number(element.price);
             });
             return <><ul>{carrinho.map((item,i) => <Item key={i} item={item} />)}</ul>
             <span>Total: R$ {Number(total).toFixed(2).replace('.', ',')}</span></>;
@@ -48,7 +48,7 @@ export default function TelaCarrinho () {
                 
                 <button disabled={desabilitarClick} onClick={comprar} >{conteudoButao}</button>
             </Container>
-            <Modal display={modalDisplay} setDisplay={setModalDisplay}/>
+            <Modal display={modalDisplay} setDisplay={setModalDisplay} total={total}/>
         </>
     )
 };
@@ -92,6 +92,7 @@ const Container = styled.div`
             font-size: 4.5vh;
             color: var(--preto);
             text-align: center;
+            padding: 0 10vw;
     }
 
     ul {

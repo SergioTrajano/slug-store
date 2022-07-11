@@ -23,7 +23,6 @@ export default function Header () {
                     if (i < urlAtual.length-1) rotaAtual += "/";
                 }
             });
-            console.log(rotaAtual);
             if (rotaAtual !== "sign-up" && rotaAtual !== "sign-in") setRotaAnterior(rotaAtual);
         }
     }
