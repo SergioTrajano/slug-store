@@ -1,21 +1,26 @@
 import React from 'react';
 import { useState, useEffect, useContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";import styled from 'styled-components';
 import UserContext from '../../UserContext';
 import { useNavigate } from "react-router-dom";
 
 export default function TelaProduto () {
 
-    const {type, id} = useParams();
+    const { id } = useParams();
     const [produto, setProduto] = useState({});
 
     const { token, carrinho, setCarrinho } = useContext(UserContext);
     const navigate = useNavigate();
+    require('dotenv').config({ path: '../../.env' })
 
     useEffect(() => {
 
+<<<<<<< HEAD
         const URL = `http://localhost:5002/products/id`;
+=======
+        const URL = `${process.env.REACT_APP_API_BASE_URL}/products/id`;
+>>>>>>> 6483dc0e27275b0214a30f53f5493b7f8df37081
 
         const config = {
             headers: {
@@ -34,11 +39,11 @@ export default function TelaProduto () {
     }, []);
 
     function adicionarAoCarrinho() {
-        if(!token) { // se usuario não está logado, atualiza o carrinho no front e navega para /cart
+        if(!token) { 
             setCarrinho([...carrinho, produto]);
             alert("Produto adicionado ao carrinho!");
             navigate(-1);
-        } else { // se esta logado, faz um post para a colecao carrinho e navega para /cart
+        } else { 
 
         const produtoAdicionado = {
             product: produto.product,
@@ -56,6 +61,7 @@ export default function TelaProduto () {
             }
         };
        
+<<<<<<< HEAD
         const promise = axios.put('http://localhost:5002/cart/add', produtoAdicionado, config);
         promise.then((response) => {
             setCarrinho(response.data)
@@ -63,6 +69,16 @@ export default function TelaProduto () {
             navigate(-1)});
             promise.catch(() => {
                alert("Problemas para adicionar produto ao carrinho.")});
+=======
+        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/cart`, produtoAdicionado, config);
+        promise.then(res => {
+            console.log(res);
+            alert("Produto adicionado ao carrinho!");
+            navigate(-1)});
+            promise.catch(err => {
+               console.log(err);
+               alert("Problemas para adicionar produto ao carrinho. Tente mais tarde, por favor.")});
+>>>>>>> 6483dc0e27275b0214a30f53f5493b7f8df37081
         }
     }
 
@@ -74,7 +90,9 @@ export default function TelaProduto () {
                 <h3>R$ {parseFloat(produto.price).toFixed(2)}</h3>
             </div>
             <Botao onClick={adicionarAoCarrinho}>ADICIONAR AO CARRINHO</Botao>
-            <Estoque>Apenas {produto.quantity} unidades disponíveis!</Estoque>
+            <Estoque>{ produto.quantity > 0 ? 
+            `Apenas ${produto.quantity} unidades disponíveis!` : 
+            `Produto em falta no estoque :/`}</Estoque>
             <Descricao>{produto.description}</Descricao>
         </Container>
     )

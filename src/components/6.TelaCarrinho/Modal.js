@@ -62,7 +62,7 @@ export default function Modal ({ display, setDisplay, total }) {
         setCartaoValidade("");
         setDisplay("none");
     }
-
+    
     const butaoCOnteudo = !desabilitarClick ? "REALIZAR PAGAMENTO" : <ThreeDots color="white" />;
 
     return (
