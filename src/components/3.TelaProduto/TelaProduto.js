@@ -16,6 +16,7 @@ export default function TelaProduto () {
 
     useEffect(() => {
 
+
         const URL = `${process.env.REACT_APP_API_BASE_URL}/products/id`;
 
         const config = {
@@ -27,7 +28,6 @@ export default function TelaProduto () {
         const promise = axios.get(URL, config);
         promise.then((response) => {
             const dados = response.data;
-            console.log(response);
             if(dados) {
                 setProduto({...dados});
             }
@@ -38,7 +38,6 @@ export default function TelaProduto () {
     function adicionarAoCarrinho() {
         if(!token) { 
             setCarrinho([...carrinho, produto]);
-            console.log(carrinho);
             alert("Produto adicionado ao carrinho!");
             navigate(-1);
         } else { 
@@ -57,16 +56,17 @@ export default function TelaProduto () {
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }
+        };
        
-        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/cart`, produtoAdicionado, config);
+
+        const promise = axios.post(`${process.env.REACT_APP_API_BASE_URL}/cart/add`, produtoAdicionado, config);
         promise.then(res => {
-            console.log(res);
+            setCarrinho(res.data);
             alert("Produto adicionado ao carrinho!");
-            navigate(-1)});
-            promise.catch(err => {
-               console.log(err);
-               alert("Problemas para adicionar produto ao carrinho. Tente mais tarde, por favor.")});
+        });
+            promise.catch(() => {
+               alert("Problemas para adicionar produto ao carrinho. Tente mais tarde, por favor.")
+            });
         }
     }
 

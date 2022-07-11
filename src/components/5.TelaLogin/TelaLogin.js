@@ -8,7 +8,7 @@ import UserContext from '../../UserContext';
 export default function TelaLogin () {
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const { setToken, setNome, rotaAnterior, desabilitarClick, setDesabilitarClick } = useContext(UserContext);
+    const { setToken, setNome, rotaAnterior, desabilitarClick, setDesabilitarClick, carrinho, setCarrinho } = useContext(UserContext);
     const navigate = useNavigate();
 
     function submeter(e) {
@@ -20,14 +20,29 @@ export default function TelaLogin () {
                 senha,
             }
         }
-        const promise = axios.get(`${process.env.REACT_APP_API_BASE_URL}/auth`, dadosLogin);
-        promise.then((response) => {
+        const promiseSignIn = axios.get(`${process.env.REACT_APP_API_BASE_URL}/auth`, dadosLogin);
+        promiseSignIn.then((response) => {
             setToken(response.data.token);
             setNome(response.data.nome);
             setDesabilitarClick(false);
-            navigate(`/${rotaAnterior}`);
+
+            const config = {
+                headers: {
+                    Authorization: `Bearer ${response.data.token}`,
+                }
+            };
+            
+            const promiseCarrinho = axios.put(`${process.env.REACT_APP_API_BASE_URL}/cart`, carrinho, config);
+            promiseCarrinho.then( response => {
+                setCarrinho([...response.data]);
+                navigate(`/${rotaAnterior}`);
+            })
+            promiseCarrinho.catch(() => {
+                alert("Erro no servidor. Por favor tente mais tarde!");
+            })
+            
         });
-        promise.catch(() => {
+        promiseSignIn.catch(() => {
             alert('Dados inválidos!');
             setDesabilitarClick(false);
             setEmail('');
