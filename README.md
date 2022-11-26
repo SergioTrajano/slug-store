@@ -15,6 +15,15 @@ Esta aplicação é um e-commerce de lesmas do anime SlugTerra. Nela o usuario p
 
 ***
 
+## :computer:	 Tecnologias e Conceitos
+
+- React
+- Single-Page Application
+- Authetication
+- Styled components
+
+***
+
 ## 🏁 Rodando a aplicação
 
 Este projeto foi inicializado com o [Create React App](https://github.com/facebook/create-react-app), então certifique-se que voce tem a ultima versão estável do [Node.js](https://nodejs.org/en/download/) e [npm](https://www.npmjs.com/) rodando localmente.
