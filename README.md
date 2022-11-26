@@ -1,7 +1,7 @@
 # <p align = "center"> SlugStore </p>
 
 <p align="center">
-   <img src="https://assets.stickpng.com/images/5b92b628196573108b203aeb.png"/>
+   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQbkmqY8JweP3Hk-FaJaKZh6091AaU-Xy2Rw&usqp=CAU"/>
 </p>
 
 <p align = "center">
