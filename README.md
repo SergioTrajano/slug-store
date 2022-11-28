@@ -31,7 +31,7 @@ Este projeto foi inicializado com o [Create React App](https://github.com/facebo
 Primeiro, faça o clone desse repositório na sua maquina:
 
 ```
-git clone https://github.com/luanalessa/projeto-backend.git
+git clone https://github.com/SergioTrajano/slug-store
 ```
 
 Depois, dentro da pasta, rode o seguinte comando para instalar as dependencias.
